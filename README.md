@@ -1,1 +1,1 @@
-# CS655GENI 
+# CS655GENI Mini Project
