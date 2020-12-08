@@ -1,14 +1,15 @@
-import wget
+import requests
 import time
+import os
 
-logPath = "timeWithCache.txt"
+logPath = "./result/timeWithCache.txt"
 
 for size in range(5, 101, 5):
 	fname = "file.{}M".format(size)
-	url = "http://10.10.1.1:8080/static/{}".format(fname)
+	url = "http://10.10.1.1:8080/static/cache/{}".format(fname)
 
 	start = time.time()
-	wget.download(url)
+	requests.get(url)
 	end = time.time()
 
 	latency = round(end-start, 2)

@@ -32,5 +32,4 @@ def plot(X1, Y1, X2, Y2):
 
 if __name__=='__main__':
     timeWithoutCache, timeWithCache = readResult()
-
     plot(timeWithoutCache[0], timeWithoutCache[1], timeWithCache[0], timeWithCache[1])
