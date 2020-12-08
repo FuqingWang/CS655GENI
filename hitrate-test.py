@@ -8,7 +8,7 @@ hitrate = 6;
 for size in range(5, 101, 5):
 	num = random.randint(0,9)
 	if num > hitrate:
-		logPath = "timeWithCache.txt"
+		logPath = "timeWithOutCache.txt"
 	else
 		logPath = "timeWithCache.txt"
 	fname = "file.{}M".format(size)
