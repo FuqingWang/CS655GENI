@@ -3,22 +3,30 @@ import requests
 import time
 import os
 import random
+import argparse
+
+# command parser
+parser = argparse.ArgumentParser(description='Experiment 2 for GENI project: latency as a function of hit rate')
+parser.add_argument('--loop', '-l', help='Loop time, required', type=int, required=True)
+parser.add_argument('--size', '-s', help='File size, required', type=int, required=True)
+args = parser.parse_args()
 
 # create folder 'result' if not exist
 if not os.path.exists('result'):
     os.makedirs('result')
 
-logPath = "./result/latency_hitrate.txt"
-loop = 100
-size = 30
+cacheIP = "10.10.1.2"
+loop = args.loop
+size = args.size
+logPath = "./result/latency_hitrate_{}.txt".format(size)
 
-for hitrate in range(1, 10):
+for hitrate in range(0, 11):
 	latency = 0
 	for _ in range(loop):
-		num = random.randint(1,11)
+		num = random.randint(1, 10)
 		if num > hitrate:
 			fname = "file.{}M.nocache".format(size)
-			url = "http://10.10.1.1:8080/static/nocache/{}".format(fname)
+			url = "http://{}:8080/static/nocache/{}".format(cacheIP, fname)
 
 			start = time.time()
 			requests.get(url, headers={'Cache-Control': 'no-cache'})
@@ -26,7 +34,7 @@ for hitrate in range(1, 10):
 			latency += end-start
 		else:
 			fname = "file.{}M".format(size)
-			url = "http://10.10.1.1:8080/static/cache/{}".format(fname)
+			url = "http://{}:8080/static/cache/{}".format(cacheIP, fname)
 
 			start = time.time()
 			requests.get(url)
