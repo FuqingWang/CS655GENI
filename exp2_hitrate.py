@@ -4,12 +4,16 @@ import time
 import os
 import random
 
+# create folder 'result' if not exist
+if not os.path.exists('result'):
+    os.makedirs('result')
+
 logPath = "./result/latency_hitrate.txt"
-loop = 20
+loop = 100
+size = 30
 
 for hitrate in range(1, 10):
 	latency = 0
-	size = 30
 	for _ in range(loop):
 		num = random.randint(1,11)
 		if num > hitrate:

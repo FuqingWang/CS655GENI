@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import os
 
 def readResult():
     timeWithoutCache = [[], []]
@@ -27,9 +28,10 @@ def plot(X1, Y1, X2, Y2):
     plt.legend()
 
     plt.savefig('withOrWithoutCache.png')
-    plt.show()
     
+# create folder 'result' if not exist
+if not os.path.exists('result'):
+    os.makedirs('result')
 
-if __name__=='__main__':
-    timeWithoutCache, timeWithCache = readResult()
-    plot(timeWithoutCache[0], timeWithoutCache[1], timeWithCache[0], timeWithCache[1])
+timeWithoutCache, timeWithCache = readResult()
+plot(timeWithoutCache[0], timeWithoutCache[1], timeWithCache[0], timeWithCache[1])

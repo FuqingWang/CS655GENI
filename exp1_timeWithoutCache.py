@@ -2,6 +2,10 @@ import requests
 import time
 import os
 
+# create folder 'result' if not exist
+if not os.path.exists('result'):
+    os.makedirs('result')
+
 logPath = "./result/timeWithoutCache.txt"
 
 for size in range(5, 101, 5):

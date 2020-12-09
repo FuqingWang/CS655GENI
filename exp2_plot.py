@@ -31,7 +31,6 @@ def plot(X, Y):
     plt.legend()
 
     plt.savefig('./result/exp2.png')
-    plt.show()
 
 hitrate_latency = readResult()
 plot(hitrate_latency[0], hitrate_latency[1])
