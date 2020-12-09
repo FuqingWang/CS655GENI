@@ -1,5 +1,7 @@
 # CS655GENI Mini Project
 
+> Note: Please check the IP address for each node before configuration. For example, if the IP address for `cache` node is `10.10.1.2`, so you need to replace all `10.10.1.1` with `10.10.1.2` for any involved configuration below.
+
 ## 1 Configurations
 
 ### 1.1 Proxy (cache) server ([Apache Traffic Server 7.1.2](https://docs.trafficserver.apache.org/en/7.1.x/))
@@ -29,6 +31,8 @@
    map http://10.10.1.1:8080/ http://10.10.2.2:80/
    reverse_map http://10.10.2.2:80/ http://10.10.1.1:8080/
    ```
+
+   > Note: Please check if the IP address of cache node is `10.10.1.1`. If its `10.10.1.2`, replace `10.10.1.1` above as `10.10.1.2`
 
 4. Configure ATS to accept all request for caching:
 
