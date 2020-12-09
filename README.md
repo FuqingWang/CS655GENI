@@ -71,5 +71,66 @@
 
    
 
+### 1.2 Server (Apache2 Web Server 2.4.29)
 
+1. Install Apache2
+
+   ```bash
+   sudo apt-get update && sudo apt-get install apache2
+   ```
+
+2. **[Optional]** Configure static file path in VirtualHost setting file (here you can set another folder as static folder instead of ‘users/junli/’)
+
+   ```bash
+   sudo vim /etc/apache2/sites-available/000-default.conf
+   ```
+
+   Add the following lines:
+
+   ```
+   Alias /static/ /users/junli/
+   <Directory /users/junli/>
+       Require all granted
+   </Directory>
+   ```
+
+   Then restart apache2 web server:
+
+   ```bash
+   sudo service apache2 restart
+   ```
+
+   > You can skip this step, then all the file to be delivered should be under `/var/www/html/`
+
+3. Set link delay
+
+   ```bash
+   sudo tc qdisc add dev eth1 root netem delay 30ms
+   ```
+
+4. Generate file for experiments
+
+   ```bash
+   wget pcvm1-41.genirack.nyu.edu/static/generateFile.sh
+   sudo bash generateFile.sh
+   ```
+
+   > This step will download a script called `generateFile.sh`. Two folders - `cache/` and `nocache/` will be created with 20 files of size from 5MB to 100MB.
+
+### 1.3 Client
+
+1. Install pip3
+
+   ```bash
+   sudo add-apt-repository universe
+   sudo apt-get update && sudo apt-get install python3-pip
+   ```
+
+2. Install matplotlib using pip3
+
+   ```bash
+   sudo pip3 install matplotlib
+   ```
+
+   > Library 'matplotlib' will be used to plot line charts.
 
