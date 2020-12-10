@@ -7,10 +7,11 @@ if not os.path.exists('result'):
     os.makedirs('result')
 
 logPath = "./result/timeWithoutCache.txt"
+cacheIP = "10.10.1.2"
 
 for size in range(5, 101, 5):
 	fname = "file.{}M".format(size)
-	url = "http://10.10.1.1:8080/static/cache/{}".format(fname)
+	url = "http://{}:8080/static/cache/{}".format(cacheIP, fname)
 
 	start = time.time()
 	requests.get(url, headers={'Cache-Control': 'no-cache'})

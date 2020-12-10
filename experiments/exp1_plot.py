@@ -23,11 +23,12 @@ def plot(X1, Y1, X2, Y2):
 
     plt.xlabel('file size / MB')
     plt.ylabel('latency / second')
+    plt.title('Latency for different sizes with/without cache')
 
     plt.grid(True)
     plt.legend()
 
-    plt.savefig('withOrWithoutCache.png')
+    plt.savefig('./result/exp1.png')
     
 # create folder 'result' if not exist
 if not os.path.exists('result'):
